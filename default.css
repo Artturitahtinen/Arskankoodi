@@ -1,0 +1,426 @@
+Etunimibody{
+margin: 0;
+}
+
+html{
+background-image: url("Kuvat/background-image.png");
+padding: 0;
+margin: 0;
+}
+body{
+font-family: 'Roboto';
+font-size: 16px;
+}
+form{
+margin: 0;
+padding: 0;
+}
+.headeri{
+text-align: center;
+font-size: 30px;
+font-weight: bold;
+padding: 30px;
+}
+.container{
+background-image: url("Kuvat/bob_the_builder.jpg");
+background-size: cover;
+background-position: 59% 50%;
+background-color: #F5F5F5;
+padding-top: 5vw;
+margin-left: 5%;
+margin-right: 5%;
+border:0.5px solid green;
+}
+.pakolliset{
+margin-left: 20px;
+color: red;
+}
+.legendi{
+text-align: center;
+font-family: 'Roboto';
+font-size: large;
+}
+.sectioni1{
+display: inline-block;
+margin-left: 150px;
+margin-top: 30px;
+}
+@media only screen and (max-width: 1150px){
+.sectioni1{
+display: inline-block;
+margin-left: 10px;
+margin-top: 30px;
+}
+}
+.sectioni2{
+display: inline-block;
+margin-left: 150px;
+margin-top: 30px;
+}
+@media only screen and (max-width: 1150px){
+.sectioni2{
+display: inline-block;
+margin-left: 30px;
+margin-top: 30px;
+}
+}
+@media only screen and (max-width: 362px){
+.sectioni2{
+display: inline-block;
+margin-left: 10px;
+margin-top: 30px;
+}
+}
+.sectioni3{
+display: inline-block;
+margin-left: 230px;
+margin-top: 30px;
+vertical-align: top;
+}
+@media only screen and (max-width: 1150px){
+.sectioni3{
+display: inline-block;
+margin-left: 30px;
+margin-top: 30px;
+vertical-align: top;
+}
+}
+@media only screen and (max-width: 533px){
+.sectioni3{
+display: inline-block;
+margin-left: 10px;
+margin-top: 30px;
+vertical-align: top;
+}
+}
+.sectioni4{
+display: inline-block;
+margin-top: 60px;
+margin-left: 150px;
+}
+@media only screen and (max-width: 785px){
+.sectioni4{
+display: inline-block;
+margin-top: 60px;
+margin-left: 10px;
+}
+}
+.sectioni5{
+display: inline-block;
+margin-top: 60px;
+margin-left: 200px;
+}
+@media only screen and (max-width: 785px){
+.sectioni5{
+display: inline-block;
+margin-top: 60px;
+margin-left: 30px;
+}
+}
+@media only screen and (max-width: 418px){
+.sectioni5{
+display: inline-block;
+margin-top: 60px;
+margin-left: 10px;
+}
+}
+.sectioni6{
+display: inline-block;
+margin-left: 150px;
+margin-top: 60px;
+margin-bottom: 30px;
+}
+@media only screen and (max-width: 785px){
+.sectioni6{
+display: inline-block;
+margin-left: 10px;
+margin-top: 60px;
+margin-bottom: 30px;
+}
+}
+.sectioni7{
+display: inline-block;
+margin-left: 200px;
+margin-top: 60px;
+margin-bottom: 30px;
+}
+@media only screen and (max-width: 785px){
+.sectioni7{
+display: inline-block;
+margin-left: 30px;
+margin-top: 60px;
+margin-bottom: 30px;
+}
+}
+@media only screen and (max-width: 359px){
+.sectioni7{
+display: inline-block;
+margin-left: 10px;
+margin-top: 60px;
+margin-bottom: 30px;
+}
+}
+.sectioni8{
+display: inline-block;
+margin-left: 150px;
+margin-top: 30px;
+}
+@media only screen and (max-width: 785px){
+.sectioni8{
+display: inline-block;
+margin-left: 10px;
+margin-top: 30px;
+}
+}
+.sectioni9{
+display: inline-block;
+margin-left: 200px;
+margin-top: 30px;
+}
+@media only screen and (max-width: 785px){
+.sectioni9{
+display: inline-block;
+margin-left: 30px;
+margin-top: 30px;
+}
+}
+@media only screen and (max-width: 335px){
+.sectioni9{
+display: inline-block;
+margin-left: 10px;
+margin-top: 30px;
+}
+}
+.sectioni10{
+display: inline-block;
+margin-top: 60px;
+margin-left: 150px;
+}
+@media only screen and (max-width: 785px){
+.sectioni10{
+display: inline-block;
+margin-top: 60px;
+margin-left: 10px;
+}
+}
+.sectioni11{
+display: inline-block;
+margin-top: 60px;
+margin-left: 200px;
+}
+@media only screen and (max-width: 785px){
+.sectioni11{
+display: inline-block;
+margin-top: 60px;
+margin-left: 30px;
+}
+}
+@media only screen and (max-width: 324px){
+.sectioni11{
+display: inline-block;
+margin-top: 60px;
+margin-left: 10px;
+}
+}
+.sectioni12{
+display: inline-block;
+margin-left: 150px;
+margin-top: 60px;
+margin-bottom: 20px;
+}
+@media only screen and (max-width: 785px){
+.sectioni12{
+display: inline-block;
+margin-left: 10px;
+margin-top: 60px;
+margin-bottom: 20px;
+}
+}
+.sectioni13{
+display: inline-block;
+margin-top: 60px;
+margin-left: 200px;
+margin-bottom: 20px;
+}
+@media only screen and (max-width: 785px){
+.sectioni13{
+display: inline-block;
+margin-top: 60px;
+margin-left: 30px;
+margin-bottom: 20px;
+}
+}
+@media only screen and (max-width: 367px){
+.sectioni13{
+display: inline-block;
+margin-top: 60px;
+margin-left: 10px;
+margin-bottom: 20px;
+}
+}
+.Tähti{
+color: red;
+}
+.Tähti2{
+color: red;
+}
+.Error{
+color: red;  
+}
+#Etunimi{
+margin-top: 10px;
+}
+@media only screen and (max-width: 1150px){
+#Etunimi{
+width: 100px;
+}
+}
+#Sukunimi{
+margin-top: 10px;
+}
+@media only screen and (max-width: 1150px){
+#Sukunimi{
+width: 100px;
+}
+}
+#Mies{
+  margin-top: 15px;
+}
+@media only screen and (max-width: 1150px){
+#Mies{
+
+}
+}
+#Nainen{
+margin-top: 10px;
+}
+@media only screen and (max-width: 1150px){
+#Nainen{
+margin-top: 10px;
+}
+}
+#Random{
+margin-top: 10px;
+}
+@media only screen and (max-width: 1150px){
+#Random{
+margin-top: 10px;
+}
+}
+.MjaT{
+margin-left: 0;
+}
+@media only screen and (max-width: 1150px){
+.MjaT{
+display: inline-block;
+margin-top: 10px;
+width: 100px;
+}
+}
+.formi{
+margin-top: 3vw;
+margin-bottom: 3vw;
+}
+.fieldsetti{
+border-color: #FFFFFF;
+border-width: 0.1vw;
+}
+#Puhelinnumero{
+margin-top: 10px;
+}
+@media only screen and (max-width: 785px){
+#Puhelinnumero{
+margin-top: 10px;
+width: 100px;
+}
+}
+.section2{
+display: block;
+margin-top: 35px;
+margin-bottom: 10px;
+}
+#Sposti{
+margin-top: 10px;
+}
+@media only screen and (max-width: 785px){
+#Sposti{
+margin-top: 10px;
+width: 150px;
+}
+}
+#Hetu{
+margin-top: 10px;
+}
+
+@media only screen and (max-width: 785px){
+#Hetu{
+width: 100px;
+}
+}
+#Asuinpaikka{
+margin-top: 10px;
+}
+@media only screen and (max-width: 785px){
+#Asuinpaikka{
+width: 100px;
+}
+}
+.fieldsetti2{
+margin-top: 4vw;
+border-color: #FFFFFF;
+border-width: 0.1vw;
+}
+#Esimies{
+margin-top: 10px;
+}
+@media only screen and (max-width: 785px){
+#Esimies{
+width: 100px;
+}
+}
+#Työnimike{
+margin-top: 10px;
+}
+@media only screen and (max-width: 785px){
+#Työnimike{
+width: 100px;
+}
+}
+#Sijainti{
+margin-top: 10px;
+}
+@media only screen and (max-width: 785px){
+#Sijainti{
+width: 100px;
+}
+}
+#Työsuhde{
+margin-top: 10px;
+}
+@media only screen and (max-width: 785px){
+#Työsuhde{
+width: 100px;
+}
+}
+#Aloituspäivämäärä{
+margin-top: 10px;
+}
+@media only screen and (max-width: 785px){
+#Aloituspäivämäärä{
+width: 100px;
+}
+}
+#Päättymispäivämäärä{
+margin-top: 10px;
+}
+@media only screen and (max-width: 785px){
+#Päättymispäivämäärä{
+margin-top: 10px;
+width: 100px;
+}
+}
+.submit{
+margin-top: 30px;
+margin-left: 60px;
+font-size: 16px;
+}
