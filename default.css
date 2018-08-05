@@ -1,4 +1,4 @@
-Etunimibody{
+body{
 margin: 0;
 }
 
@@ -419,6 +419,7 @@ margin-top: 10px;
 width: 100px;
 }
 }
+
 .submit{
 margin-top: 30px;
 margin-left: 60px;

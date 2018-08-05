@@ -1,32 +1,33 @@
 $(function(){
 	if($("#Työsuhde").val() == "Määräaikainen"){
-		$("#Aloituspäivämäärä").prop('disabled', false);
-		$("#Päättymispäivämäärä").prop('disabled', false);
+		$("#Aloituspäivämäärä").show();
+		$("#Päättymispäivämäärä").show();
 		$("#Aloituspäivämäärä").attr("placeholder", "PP.KK.VVVV");
 		$("#Päättymispäivämäärä").attr("placeholder", "PP.KK.VVVV");
 
-		$("#Aloituspvm").append("<span class = Tähti2> &nbsp  * </span>");
-		$("#Päättymispvm").append("<span class = Tähti2> &nbsp  * </span>");
 	}else{
-		$("#Aloituspäivämäärä").prop('disabled', true);
-		$("#Päättymispäivämäärä").prop('disabled', true);
+		$("#Aloituspäivämäärä").removeAttr("placeholder");
+		$("#Päättymispäivämäärä").removeAttr("placeholder");
+		$("#Aloituspäivämäärä").hide();
+		$("#Päättymispäivämäärä").hide();
+
 
 		$(".Tähti2").remove();
 	}
 	$("#Työsuhde").change(function () {
 		if($("#Työsuhde").val() == "Määräaikainen"){
-			$("#Aloituspäivämäärä").prop('disabled', false);
-			$("#Päättymispäivämäärä").prop('disabled', false);
+			$("#Aloituspäivämäärä").show();
+			$("#Päättymispäivämäärä").show();
 			$("#Aloituspäivämäärä").attr("placeholder", "PP.KK.VVVV");
 			$("#Päättymispäivämäärä").attr("placeholder", "PP.KK.VVVV");
 
-			$("#Aloituspvm").append("<span class = Tähti2> &nbsp  * </span>");
-			$("#Päättymispvm").append("<span class = Tähti2> &nbsp  * </span>");
 		}else{
-			$("#Aloituspäivämäärä").prop('disabled', true);
-			$("#Päättymispäivämäärä").prop('disabled', true);
+			$("#Aloituspäivämäärä").removeAttr("placeholder");
+			$("#Päättymispäivämäärä").removeAttr("placeholder");
+			$("#Aloituspäivämäärä").hide();
+			$("#Päättymispäivämäärä").hide();
 
-			$(".Tähti2").remove();
+
 		}
 	});
 });

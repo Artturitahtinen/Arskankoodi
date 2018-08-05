@@ -24,74 +24,111 @@
     $aloituspvm = $päättymispvm = "";
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-      if(empty($_POST["etunimi"])){
+      if(empty($_POST["etunimi"]) || (trim($_POST["etunimi"]) == "")){
         $etunimiError = "Vaaditaan";
       }else{
       $etunimi = testaaInput($_POST["etunimi"]);
+      if(!preg_match("/^[a-öA-Ö ]*$/",$etunimi)) {
+      $etunimiError = "Tarkista oikeinkirjoitus";
+      }
       }
 
-      if(empty($_POST["sukunimi"])){
+      if(empty($_POST["sukunimi"]) || (trim($_POST["sukunimi"]) == "")){
         $sukunimiError = "Vaaditaan";
       }else{
       $sukunimi = testaaInput($_POST["sukunimi"]);
+      if(!preg_match("/^[a-öA-Ö ]*$/",$sukunimi)) {
+      $sukunimiError = "Tarkista oikeinkirjoitus";
+      }
       }
 
-	  if(empty($_POST["puhelinnumero"])){
+	  if(empty($_POST["puhelinnumero"]) || (trim($_POST["puhelinnumero"]) == "")){
         $puhelinnumeroError = "Vaaditaan";
       }else{
       $puhelinnumero = testaaInput($_POST["puhelinnumero"]);
+      if(!preg_match("^((90[0-9]{3})?0|\+358\s?)(?!(100|20(0|2(0|[2-3])|9[8-9])|300|600|700|708|75(00[0-3]|(1|2)\d{2}|30[0-2]|32[0-2]|75[0-2]|98[0-2])))(4|50|10[1-9]|20(1|2(1|[4-9])|[3-9])|29|30[1-9]|71|73|75(00[3-9]|30[3-9]|32[3-9]|53[3-9]|83[3-9])|2|3|5|6|8|9|1[3-9])\s?(\d\s?){4,19}\d$",$puhelinnumero)) {
+      $puhelinnumeroError = "Tarkista numero";
       }
+      }
+      
 
-	  if(empty($_POST["henkilötunnus"])){
+	  if(empty($_POST["henkilötunnus"]) || (trim($_POST["henkilötunnus"]) == "")){
         $henkilötunnusError = "Vaaditaan";
       }else{
       $henkilötunnus = testaaInput($_POST["henkilötunnus"]);
+      if(!preg_match("/[0-3][0-9]\.?[0,1][0-9]\.?[0-9]{2}[-+A][0-9]{3}[0-9A-Z]/",$henkilötunnus)) {
+      $henkilötunnusError = "Tarkista oikeinkirjoitus";
+      }
       }
 
-	  if(empty($_POST["asuinpaikka"])){
+	  if(empty($_POST["asuinpaikka"]) || (trim($_POST["asuinpaikka"]) == "")){
         $asuinpaikkaError = "Vaaditaan";
       }else{
       $asuinpaikka = testaaInput($_POST["asuinpaikka"]);
+      if(!preg_match("/^[a-öA-Ö ]*$/",$asuinpaikka)){
+        $asuinpaikkaError = "Tarkista oikeinkirjoitus";
+      }
       }
 
-	  if(empty($_POST["työnimike"])){
+	  if(empty($_POST["työnimike"]) || (trim($_POST["työnimike"]) == "")){
         $työnimikeError = "Vaaditaan";
       }else{
       $työnimike = testaaInput($_POST["työnimike"]);
+      if(!preg_match("/^[a-öA-Ö ]*$/",$työnimike)){
+        $työnimikeError = "Tarkista oikeinkirjoitus";
+      }
       }
 
-	  if(empty($_POST["esimies"])){
+	  if(empty($_POST["esimies"]) || (trim($_POST["esimies"]) == "")){
         $esimiesError = "Vaaditaan";
       }else{
       $esimies = testaaInput($_POST["esimies"]);
+      if(!preg_match("/^[a-öA-Ö ]*$/",$esimies)){
+        $esimiesError = "Tarkista oikeinkirjoitus";
+      }
       }
 
-	  if(empty($_POST["sijainti"])){
+	  if(empty($_POST["sijainti"]) || (trim($_POST["sijainti"]) == "")){
         $sijaintiError = "Vaaditaan";
       }else{
       $sijainti = testaaInput($_POST["sijainti"]);
+      if(!preg_match("/^[a-öA-Ö0-9]*$/",$sijainti)){
+        $sijaintiError = "Tarkista oikeinkirjoitus";
+      }
       }
 
+    $työsuhde = $_POST["työmuodot"];
 
-	  if(($_POST["työmuodot"]) == "määräaikainen" && (empty($_POST["aloituspäivämäärä"]))){
+
+	  if(($_POST["työmuodot"]) == "Määräaikainen" && (empty($_POST["aloituspäivämäärä"]))){
 		$aloituspvmError = "Vaaditaan";
 		}else{
 		$aloituspvm = testaaInput($_POST["aloituspäivämäärä"]);
+    if(!preg_match("/^([0-9]{2}\.[0-9]{2}\.[0-9]{4})$/",$aloituspvm)){
+      $aloituspvmError = "Tarkista oikea muoto";
+    }
 		}
 
-	  if(($_POST["työmuodot"]) == "määräaikainen" && (empty($_POST["päättymispäivämäärä"]))){
+	  if(($_POST["työmuodot"]) == "Määräaikainen" && (empty($_POST["päättymispäivämäärä"]))){
 		$päättymispvmError = "Vaaditaan";
 		}else{
 		$päättymispvm = testaaInput($_POST["päättymispäivämäärä"]);
+    if(!preg_match("/^([0-9]{2}\.[0-9]{2}\.[0-9]{4})$/",$päättymispvm)){
+      $päättymispvmError = "Tarkista oikea muoto";
+    }
 		}
 
-	  if(($_POST["työmuodot"]) == "määräaikainen" && ((empty($_POST["aloituspäivämäärä"])) &&
+	  if(($_POST["työmuodot"]) == "Määräaikainen" && ((empty($_POST["aloituspäivämäärä"])) &&
 	  (empty($_POST["päättymispäivämäärä"])))){
 		$aloituspvmError = "Vaaditaan";
 		$päättymispvmError = "Vaaditaan";
 		}else{
 		$aloituspvm = testaaInput($_POST["aloituspäivämäärä"]);
 		$päättymispvm = testaaInput($_POST["päättymispäivämäärä"]);
+    if(!preg_match("/^([0-9]{2}\.[0-9]{2}\.[0-9]{4})$/",$aloituspvm) && (!preg_match("/^([0-9]{2}\.[0-9]{2}\.[0-9]{4})$/",$päättymispvm))){
+      $aloituspvmError = "Tarkista oikea muoto";
+      $päättymispvmError = "Tarkista oikea muoto";
+    }
 		}
     }
     function testaaInput($data){
@@ -162,19 +199,19 @@
           <label for = "Työsuhde">Työsuhde</label> <br>
 						<select id = "Työsuhde" name="työmuodot">
 							<option value="kokoaikainen">Kokoaikainen</option>
-							<option value = "Määräaikainen" <?php if(isset($_POST['työmuodot']) && $_POST['työmuodot'] == 'Määräaikainen')
-							echo 'selected= "selected"';
+							<option value = "Määräaikainen" <?php if(isset($työsuhde) && $työsuhde == 'Määräaikainen')
+							echo 'selected = "selected"';
 							?>>Määräaikainen</option>
 						</select>
         </div>
       </div>
       <div>
 			<div class = "sectioni12">
-          <label for = "Aloituspäivämäärä" id = "Aloituspvm">Aloituspvm <?php echo $aloituspvmError;?></label> <br>
+          <label for = "Aloituspäivämäärä">Aloituspvm <span class = "Tähti2"> &nbsp *  <?php echo $aloituspvmError;?></span></label> <br>
           <input id = "Aloituspäivämäärä" type="text" name = "aloituspäivämäärä">
 				</div>
         <div class = "sectioni13">
-          <label for = "Päättymispäivämäärä" id = "Päättymispvm">Päättymispvm <?php echo $päättymispvmError;?></label> <br>
+          <label for = "Päättymispäivämäärä">Päättymispvm <span class = "Tähti2"> &nbsp *  <?php echo $päättymispvmError;?></span></label> <br>
           <input id = "Päättymispäivämäärä" type="text" name = "päättymispäivämäärä">
         </div>
       </div>
