@@ -138,33 +138,60 @@
 	&& $asuinpaikkaError == "" && $työnimikeError == ""
 	&& $esimiesError == "" && $sijaintiError == ""
 	&& $aloituspvmError == "" && $päättymispvmError == ""){
-	echo "Moro";	
+		YhdistaTietokantaan($etunimi, $sukunimi, $puhelinnumero);
 	}	
-		
-		
 	}
 	
-    
-    function testaaInput($data){
+	function testaaInput($data){
       $data = trim($data);
       $data = stripslashes($data);
       $data = htmlspecialchars($data);
       return $data;
     }
-    ?>
+
+?>
+
+<?php	
 	
-	<?php
 	$servername = "localhost";
 	$username = "Arke";
 	$password = "TietoK96";
+	$dbname = "formidata";
 	
-	$connection = new mysqli($servername, $username, $password);
+	$connection = new mysqli($servername, $username, $password, $dbname);
 	
 	if($connection ->connect_error){
 	die("Connection failed: " . $connection ->connect_error);
 	}
+	$stmt = $connection -> prepare("INSERT INTO lomakedata (Etunimi) VALUES (?)");
+	$stmt -> bind_param('s', $enimi);
 	
-	?>
+	if($_SERVER["REQUEST_METHOD"] == "POST"){
+	
+	$enimi = $etunimi;
+	$snimi = $sukunimi;
+	$spuoli = $_POST["gender"];
+	$puh = $puhelinnumero;
+	$sposti = $sähköposti;
+	$htunnus = $henkilötunnus;
+	$apaikka = $asuinpaikka;
+	$tnimike = $työnimike;
+	$emies = $esimies;
+	$sijaint = $sijainti;
+	$tsuhde = $työsuhde;
+	$apvm = $aloituspvm;
+	$ppvm = $päättymispvm;
+	}
+	$stmt -> execute();
+	
+	
+	$stmt -> close();
+	$connection -> close();
+		
+	
+	
+    ?>
+
     <header class = "headeri">Uuden työntekijän tiedot</header>
 		<div class = "container">
     <p class = "pakolliset"> * Pakolliset tekstikentät </p>
@@ -182,9 +209,9 @@
         </div>
         <div class = "sectioni3">
           <label for = "Mies" >Sukupuoli <span class = "Tähti"> &nbsp * </span></label> <br>
-          <input id = "Mies" type = "radio" name = "gender" value = "mies" checked>Mies <br>
-          <input id = "Nainen" type = "radio" name = "gender" value = "nainen">Nainen <br>
-          <input id = "Random" type = "radio" name = "gender" value = "muu"><span class = "MjaT">Maan ja taivaan väliltä </span>
+          <input id = "Mies" type = "radio" name = "gender" value = "Mies" checked>Mies <br>
+          <input id = "Nainen" type = "radio" name = "gender" value = "Nainen">Nainen <br>
+          <input id = "Random" type = "radio" name = "gender" value = "Muu"><span class = "MjaT">Maan ja taivaan väliltä </span>
         </div>
         <div>
 				<div class = "sectioni4">
@@ -192,7 +219,7 @@
 					<input id = "Puhelinnumero" type="text" name = "puhelinnumero" value = "<?php echo $puhelinnumero;?>">
 				</div>
         <div class = "sectioni5">
-          <label for = "Sposti" >Sähköposti <span class = "Tähti"> &nbsp * <?php echo $sähköpostiError;?></span></label> <br>
+          <label for = "Sposti" >Sähköposti <?php echo $sähköpostiError;?></label> <br>
 					<input id = "Sposti" type="text" name = "sähköposti" value = "<?php echo $sähköposti;?>">
         </div>
       </div>
