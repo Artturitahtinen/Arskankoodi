@@ -5,7 +5,7 @@
     <link rel="icon" type="image/png" href="Kuvat/favicon-32x32.png" sizes="32x32">
     <link rel="stylesheet" href="default.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-	<meta charset="UTF-8">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
   <body>
@@ -16,12 +16,14 @@
     $työnimikeError = $esimiesError =
     $sijaintiError = $työsuhdeError =
     $aloituspvmError = $päättymispvmError = "";
-    $etunimi = $sukunimi =
+    $etunimi = $sukunimi = $spuoli =
     $puhelinnumero = $sähköposti =
     $henkilötunnus = $asuinpaikka =
     $työnimike = $esimies =
     $sijainti = $työsuhde =
     $aloituspvm = $päättymispvm = "";
+	
+	$tallennus = "";
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
       if(empty($_POST["etunimi"]) || (trim($_POST["etunimi"]) == "")){
@@ -36,12 +38,13 @@
       if(empty($_POST["sukunimi"]) || (trim($_POST["sukunimi"]) == "")){
         $sukunimiError = "Vaaditaan";
       }else{
-      $sukunimi = testaaInput($_POST["sukunimi"]);
+      $sukunimi = ($_POST["sukunimi"]);
       if(!preg_match("/^[a-öA-Ö ]*$/",$sukunimi)) {
       $sukunimiError = "Tarkista oikeinkirjoitus";
       }
       }
-
+	$spuoli = $_POST["gender"];
+	
 	  if(empty($_POST["puhelinnumero"]) || (trim($_POST["puhelinnumero"]) == "")){
         $puhelinnumeroError = "Vaaditaan";
       }else{
@@ -134,11 +137,12 @@
 	  }
 	}
 	if($etunimiError == "" && $sukunimiError == "" && 
-	$puhelinnumeroError == "" && $henkilötunnusError == ""
+	$puhelinnumeroError == "" && $sähköpostiError == "" && $henkilötunnusError == ""
 	&& $asuinpaikkaError == "" && $työnimikeError == ""
 	&& $esimiesError == "" && $sijaintiError == ""
 	&& $aloituspvmError == "" && $päättymispvmError == ""){
-		YhdistaTietokantaan($etunimi, $sukunimi, $puhelinnumero);
+		Yhdistatietokantaan($etunimi, $sukunimi, $spuoli, $puhelinnumero, $sähköposti, $henkilötunnus,
+	$asuinpaikka, $työnimike, $esimies, $sijainti, $työsuhde, $aloituspvm, $päättymispvm);
 	}	
 	}
 	
@@ -151,7 +155,12 @@
 
 ?>
 
-<?php	
+<?php
+	
+	$tallennus = "Tiedot tallennettu";
+
+	function Yhdistatietokantaan($etunimi, $sukunimi, $spuoli, $puhelinnumero, $sähköposti, $henkilötunnus,
+	$asuinpaikka, $työnimike, $esimies, $sijainti, $työsuhde, $aloituspvm, $päättymispvm){
 	
 	$servername = "localhost";
 	$username = "Arke";
@@ -160,17 +169,18 @@
 	
 	$connection = new mysqli($servername, $username, $password, $dbname);
 	
-	if($connection ->connect_error){
+	
+	if($connection->connect_error){
 	die("Connection failed: " . $connection ->connect_error);
 	}
-	$stmt = $connection -> prepare("INSERT INTO lomakedata (Etunimi) VALUES (?)");
-	$stmt -> bind_param('s', $enimi);
+	mysqli_set_charset($connection,"utf8");
 	
-	if($_SERVER["REQUEST_METHOD"] == "POST"){
+	$stmt = $connection->prepare("INSERT INTO lomakedata (Etunimi, Sukunimi, Sukupuoli, Puhelinnumero, Sähköposti, Henkilötunnus,
+	Asuinpaikka, Työnimike, Esimies, Sijainti, Työsuhde, Aloituspvm, Päättymispvm) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+	$stmt->bind_param("sssssssssssss", $enimi, $sukunimi, $spuoli, $puh, $sposti, $htunnus, $apaikka, $tnimike, $emies, $sijaint, $tsuhde, $apvm, $ppvm);
 	
 	$enimi = $etunimi;
 	$snimi = $sukunimi;
-	$spuoli = $_POST["gender"];
 	$puh = $puhelinnumero;
 	$sposti = $sähköposti;
 	$htunnus = $henkilötunnus;
@@ -181,19 +191,25 @@
 	$tsuhde = $työsuhde;
 	$apvm = $aloituspvm;
 	$ppvm = $päättymispvm;
-	}
+
 	$stmt -> execute();
 	
 	
 	$stmt -> close();
 	$connection -> close();
-		
 	
+	echo '<style type = "text/css">
+		.tallennettu{
+			display: block;
+		}
+		</style>';
+	}
 	
     ?>
 
     <header class = "headeri">Uuden työntekijän tiedot</header>
 		<div class = "container">
+		<div class = "tallennettu">Tiedot tallennettu.</div>
     <p class = "pakolliset"> * Pakolliset tekstikentät </p>
     <form class = "formi" method="post"
  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
