@@ -163,9 +163,9 @@
 	$asuinpaikka, $työnimike, $esimies, $sijainti, $työsuhde, $aloituspvm, $päättymispvm){
 	
 	$servername = "localhost";
-	$username = "Arke";
-	$password = "TietoK96";
-	$dbname = "formidata";
+	$username = "xxxx";
+	$password = "xxxxxxxx";
+	$dbname = "xxxxxxxxx";
 	
 	$connection = new mysqli($servername, $username, $password, $dbname);
 	
